@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import json
 import os
+from mainapp.models import ProductCategory, Product
 
 
 def index(request):
@@ -13,10 +14,12 @@ def index(request):
 def products(request):
     with open(os.getcwd() + '\\mainapp\\fixtures\\products.json', 'r', encoding='utf-8') as f:
         templates = json.load(f)
+
     context = {
         'title': 'GeekShop - Каталог',
-        'list_groups': ['Новинки', 'Одежда', 'Обувь', 'Аксессуары', 'Подарки'],
-        'clothes': templates,
+        'list_groups': ProductCategory.objects.all(),
+        # 'clothes': templates,
+        'clothes': Product.objects.all(),
         # 'clothes': [{
         #     'name': 'Худи черного цвета с монограммами adidas Originals',
         #     'price': '6 090,00',
