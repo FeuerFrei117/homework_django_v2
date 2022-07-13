@@ -30,17 +30,3 @@ class Command(BaseCommand):
             new_category = Product(**prod)
             new_category.save()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

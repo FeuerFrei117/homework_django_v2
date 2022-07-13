@@ -48,9 +48,11 @@ def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
         if form.is_valid():
+            messages.set_level(request, messages.SUCCESS)
             messages.success(request, 'Изменения успешно сохранены')
             form.save()
         else:
+            messages.set_level(request, messages.ERROR)
             messages.error(request, form.errors)
 
     """Одно из решений подсчета общей суммы и кол. товара"""
